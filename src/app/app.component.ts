@@ -21,7 +21,11 @@ export class AppComponent implements OnInit {
     this.newForm = new FormGroup({
       'projectName': new FormControl(null, Validators.required),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'projectStatus': new FormControl(this.projectStatus[0])
+      'projectStatus': new FormControl(null)
     })
+  }
+
+  onSubmit() {
+    console.log(this.newForm.value);
   }
 }
