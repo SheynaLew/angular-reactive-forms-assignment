@@ -8,11 +8,11 @@
           3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished' - DONE (ts)
           4) Submit Button - DONE (ts & html)
 
-          Add your own Validator which doesn't allow "Test" as a Project Name
+          Add your own Validator which doesn't allow "Test" as a Project Name - DONE
 
           Also implement that Validator as an async Validator (replace the other one)
 
-          Upon submitting the form, simply print the value to the console - DONE (ts)
+          Upon submitting the form, simply print the value to the console - DONE (ts & html)
       -->
 
       <form [formGroup]="newForm" (ngSubmit)="onSubmit()">
@@ -23,6 +23,10 @@
             id="projectName"
             formControlName="projectName"
             class="form-control">
+            <span class="help-block" *ngIf="!newForm.get('projectName').valid && newForm.get('projectName').touched">
+              <span *ngIf="newForm.get('projectName').errors['projectNameIsForbidden']">Please use a different project name</span>
+              <span *ngIf="newForm.get('projectName').errors['required']">Please enter a project name</span>
+            </span>
         </div>
         <div class="form-group">
           <label for="email">Email</label>

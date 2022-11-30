@@ -9,7 +9,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
   // variables
   newForm: FormGroup;
-  projectStatus: ["Stable", "Critical", "Finished"]
+  projectStatus: ["Stable", "Critical", "Finished"];
+  forbiddenNames = ["test"];
 
   // lifecycle hooks
   ngOnInit() {
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   // functions
   setUpNewForm() {
     this.newForm = new FormGroup({
-      'projectName': new FormControl(null, Validators.required),
+      'projectName': new FormControl(null, [(Validators.required), this.forbiddenProjectNames.bind(this)]),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'projectStatus': new FormControl(null)
     })
@@ -27,5 +28,16 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     console.log(this.newForm.value);
+
+  }
+
+  // Validators
+  forbiddenProjectNames(control: FormControl): { [s: string]: boolean } {
+    if (this.forbiddenNames.indexOf(control.value) !== -1) {
+      return { 'projectNameIsForbidden': true }
+    }
+    else {
+      return null;
+    }
   }
 }
