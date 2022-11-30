@@ -31,21 +31,34 @@
         <div class="form-group">
           <label for="email">Email</label>
           <input
-            type="text"
+            type="email"
             id="email"
             formControlName="email"
             class="form-control">
         </div>
         <div class="form-group" >
-          <select formControlName="projectStatus" class="form-control" >
+          <!-- My code -->
+          <!-- <select formControlName="projectStatus" class="form-control" >
               <option
                 *ngFor="let status of projectStatus"
                 [ngValue]="status"
                 name="projectStatus"
                 id="projectStatus"
               >{{ status }}</option>
-
+          </select> -->
+          <!-- Course code -->
+          <label for="projectStatus">Project Status</label>
+          <select
+            name="projectStatus"
+            id="projectStatus"
+            formControlName="projectStatus"
+            class="form-control">
+            <!-- <option *ngFor="let status of allProjectStatus" [value]="status">{{ status }}</option> -->
+              <option value="stable">Stable</option>
+              <option value="critical">Critical</option>
+              <option value="finished">Finished</option>
           </select>
+          <!-- My code -->
         </div>
         <button class="btn btn-primary" type="submit">Submit</button>
       </form>

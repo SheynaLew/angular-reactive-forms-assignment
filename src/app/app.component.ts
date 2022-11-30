@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   // variables
   newForm: FormGroup;
-  projectStatus: ["Stable", "Critical", "Finished"];
+  allProjectStatus: ["Stable", "Critical", "Finished"];
   forbiddenNames = ["test"];
 
   // lifecycle hooks
@@ -21,9 +21,9 @@ export class AppComponent implements OnInit {
   // functions
   setUpNewForm() {
     this.newForm = new FormGroup({
-      'projectName': new FormControl(null, [(Validators.required)], this.forbiddenProjectNames),
+      'projectName': new FormControl(null, (Validators.required), this.forbiddenProjectNames),
       'email': new FormControl(null, [Validators.required, Validators.email]),
-      'projectStatus': new FormControl(null)
+      'projectStatus': new FormControl("critical")
     })
   }
 
